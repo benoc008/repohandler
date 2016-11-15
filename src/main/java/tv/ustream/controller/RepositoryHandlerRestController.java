@@ -39,7 +39,7 @@ public class RepositoryHandlerRestController {
 
     @RequestMapping(value="by-count", method=GET)
     public List<Repository> getByCount(@RequestParam(value = "count") Long accessCount){
-        return null;
+        return repositoryHandler.getByAccessCount(accessCount);
     }
 
     @RequestMapping(method=DELETE)

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class RepositoryHandler {
@@ -25,8 +26,16 @@ public class RepositoryHandler {
     }
 
     public List<Repository> getByAccessCount(long count){
-        //todo implement
-        return null;
+        List<Repository> results =
+                repositories
+                        .stream()
+                        .filter(x -> x.getAccessCounter() >= count)
+                        .collect(Collectors.toList());
+        results.forEach(x -> x.setAccessCounter(x.getAccessCounter() + 1));
+        if(results.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return results;
     }
 
     private Repository findByName(String name) throws NoSuchElementException {

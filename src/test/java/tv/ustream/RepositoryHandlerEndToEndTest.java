@@ -8,15 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import tv.ustream.domain.Repository;
 import tv.ustream.logic.RepositoryBuilder;
 
 import java.util.Arrays;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RepositoryHandlerEndToEndTest {
 
     @Autowired
@@ -42,7 +39,6 @@ public class RepositoryHandlerEndToEndTest {
     }
 
     @Test
-    @Ignore
     public void happyPathGetByAccessCount() {
         driver
                 .addRepository(

@@ -1,8 +1,10 @@
 package tv.ustream;
 
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
 import tv.ustream.domain.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,7 +44,8 @@ public class RepositoryDriver {
     }
 
     public RepositoryDriver callGetRepositoryByAccessCount(Long accessCount) {
-        getByAccessCountResult = testRestTemplate.getForObject("/by-count?count={accessCount}", List.class, accessCount);
+        ResponseEntity<Repository[]> responseEntity = testRestTemplate.getForEntity("/by-count?count={accessCount}", Repository[].class, accessCount);
+        getByAccessCountResult = Arrays.asList(responseEntity.getBody());
         return this;
     }
 

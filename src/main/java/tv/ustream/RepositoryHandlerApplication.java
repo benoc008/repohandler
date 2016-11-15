@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RepokezeloApplication {
+public class RepositoryHandlerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RepokezeloApplication.class, args);
+		SpringApplication.run(RepositoryHandlerApplication.class, args);
 	}
 }

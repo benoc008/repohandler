@@ -1,7 +1,6 @@
-package tv.ustream;
+package tv.ustream.end2end;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import tv.ustream.logic.RepositoryBuilder;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
@@ -39,7 +40,7 @@ public class RepositoryHandlerEndToEndTest {
     }
 
     @Test
-    public void happyPathGetByAccessCount() {
+    public void happyPathGetByAccessCount() throws IOException {
         driver
                 .addRepository(
                         new RepositoryBuilder()
@@ -64,8 +65,7 @@ public class RepositoryHandlerEndToEndTest {
     }
 
     @Test
-    @Ignore
-    public void happyPathDelete() {
+    public void happyPathDelete() throws URISyntaxException {
         driver
                 .addRepository(
                         new RepositoryBuilder()
@@ -74,6 +74,23 @@ public class RepositoryHandlerEndToEndTest {
                                 .build())
                 .deleteRepository("first")
                 .callGetRepository("first")
-                .thenGetRepositoryReturnsNotFound();
+                .thenReturnsNotFound();
+    }
+
+    @Test
+    public void getByAccessCountNotFound() throws IOException {
+        driver
+                .addRepository(new RepositoryBuilder()
+                        .withName("first")
+                        .withCreator("creator")
+                        .build())
+                .addRepository(new RepositoryBuilder()
+                        .withName("second")
+                        .withCreator("creator")
+                        .build())
+                .callGetRepository("first")
+                .callGetRepository("second")
+                .callGetRepositoryByAccessCount(2L)
+                .thenReturnsNotFound();
     }
 }

@@ -1,6 +1,7 @@
 package tv.ustream.logic;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tv.ustream.domain.Repository;
 import tv.ustream.exception.NameAlreadyInUseException;
 import tv.ustream.exception.NoSuchRepositoryException;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class RepositoryHandler {
 
-    private static Logger LOGGER = Logger.getLogger(RepositoryHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RepositoryHandler.class);
     private List<Repository> repositories = new ArrayList<>();
 
     public void add(Repository repository) throws NameAlreadyInUseException {

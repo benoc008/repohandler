@@ -4,12 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>tv.ustream</groupId>
-	<artifactId>repokezelo</artifactId>
+	<artifactId>repohandler</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>repokezelo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>repohandler</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

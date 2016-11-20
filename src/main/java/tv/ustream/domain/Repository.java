@@ -40,4 +40,12 @@ public class Repository {
     public void setAccessCounter(long accessCounter) {
         this.accessCounter = accessCounter;
     }
+
+    @Override
+    public String toString() {
+        return "Repository name: " + name +
+                " creator: " + creator +
+                " creationTime: " + creationTime +
+                " access counter: " + accessCounter + "\n";
+    }
 }
